@@ -18,7 +18,7 @@ coil_height = st.sidebar.number_input("Coil Height (m)", value=2.0)
 row_pitch = st.sidebar.number_input("Row Pitch (m)", value=0.0254, step=0.0001)  # step = 0.1 mm
 
 # Compute total tubes before suggesting circuit count
-tubes_per_row = math.floor(coil_length / row_pitch)
+tubes_per_row = math.floor(coil_height / row_pitch)
 total_tubes = tubes_per_row * rows
 default_tubes_per_circuit = 6
 default_circuits = max(1, round(total_tubes / default_tubes_per_circuit))
