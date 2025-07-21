@@ -15,7 +15,7 @@ coil_thickness = st.sidebar.number_input("Core Thickness (m)", value=0.2)
 fin_spacing = st.sidebar.number_input("Fin Spacing (mm)", value=2.54) / 1000  # m
 coil_length = st.sidebar.number_input("Coil Length (m)", value=2.5)
 coil_height = st.sidebar.number_input("Coil Height (m)", value=2.0)
-row_pitch = st.sidebar.number_input("Row Pitch (m)", value=0.0254)  # typical 1 inch
+row_pitch = st.sidebar.number_input("Row Pitch (m)", value=0.0254, step=0.0001)
 n_circuits = st.sidebar.number_input("Number of Refrigerant Circuits", value=20)
 
 st.sidebar.header("Refrigerant and Flow Conditions")
