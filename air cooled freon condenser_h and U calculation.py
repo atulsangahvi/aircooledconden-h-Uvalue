@@ -15,21 +15,26 @@ coil_thickness = st.sidebar.number_input("Core Thickness (m)", value=0.2)
 fin_spacing = st.sidebar.number_input("Fin Spacing (mm)", value=2.54) / 1000  # m
 coil_length = st.sidebar.number_input("Coil Length (m)", value=2.5)
 coil_height = st.sidebar.number_input("Coil Height (m)", value=2.0)
-row_pitch = st.sidebar.number_input("Row Pitch (m)", value=0.0254, step=0.0001)
-n_circuits = st.sidebar.number_input("Number of Refrigerant Circuits", value=20)
+row_pitch = st.sidebar.number_input("Row Pitch (m)", value=0.0254, step=0.0001)  # step = 0.1 mm
+
+# Compute total tubes before suggesting circuit count
+tubes_per_row = math.floor(coil_length / row_pitch)
+total_tubes = tubes_per_row * rows
+default_tubes_per_circuit = 6
+default_circuits = max(1, round(total_tubes / default_tubes_per_circuit))
+
+n_circuits = st.sidebar.number_input("Number of Refrigerant Circuits", value=default_circuits, step=1, format="%d")
 
 st.sidebar.header("Refrigerant and Flow Conditions")
 fluid = st.sidebar.selectbox("Select Refrigerant", ["R134a", "R407C"])
 m_dot_total = st.sidebar.number_input("Total Mass Flow Rate of Freon (kg/s)", value=0.599)
 
-# Calculate number of tubes
-tubes_per_row = math.floor(coil_height / row_pitch)
-total_tubes = tubes_per_row * rows
+# Compute coil data
 tubes_per_circuit = total_tubes / n_circuits
 coil_width_per_circuit = coil_length / n_circuits
 m_dot_per_circuit = m_dot_total / n_circuits
 
-# Air velocity based on full face area
+# Air velocity
 face_area = coil_length * coil_height
 v_air = airflow / face_area
 
