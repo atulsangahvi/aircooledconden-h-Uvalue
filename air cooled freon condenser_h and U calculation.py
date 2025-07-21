@@ -23,7 +23,7 @@ fluid = st.sidebar.selectbox("Select Refrigerant", ["R134a", "R407C"])
 m_dot_total = st.sidebar.number_input("Total Mass Flow Rate of Freon (kg/s)", value=0.599)
 
 # Calculate number of tubes
-tubes_per_row = math.floor(coil_length / row_pitch)
+tubes_per_row = math.floor(coil_height / row_pitch)
 total_tubes = tubes_per_row * rows
 tubes_per_circuit = total_tubes / n_circuits
 coil_width_per_circuit = coil_length / n_circuits
