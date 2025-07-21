@@ -19,9 +19,14 @@ coil_height = st.sidebar.number_input("Coil Height (m)", value=2.0)
 st.sidebar.header("Refrigerant and Flow Conditions")
 fluid = st.sidebar.selectbox("Select Refrigerant", ["R134a", "R407C"])
 m_dot = st.sidebar.number_input("Mass Flow Rate of Freon (kg/s)", value=0.599)
-T_super = 95 + 273.15  # Superheated inlet temperature
-T_cond = 57 + 273.15   # Saturated temperature
-T_sub = 52 + 273.15    # Subcooled temperature
+
+# Set fixed condensing temperature
+T_cond = 57 + 273.15
+T_super = 95 + 273.15
+T_sub = 52 + 273.15
+
+# Get saturation pressure once for all zones
+P_sat = PropsSI("P", "T", 57 + 273.15, "Q", 0, fluid)
 
 # Constants for air
 mu_air = 2.1e-5
@@ -40,8 +45,7 @@ Nu_air = C * Re_air**m * Pr_air**(1/3)
 h_air = Nu_air * k_air / D_o
 
 # Refrigerant side calculations
-def calc_h_and_Re(T, fluid, m_dot, D):
-    P = PropsSI('P', 'T', T, 'Q', 0 if T < T_super else 1, fluid)
+def calc_h_and_Re(T, P, fluid, m_dot, D):
     mu = PropsSI("VISCOSITY", "T", T, "P", P, fluid)
     cp = PropsSI("C", "T", T, "P", P, fluid)
     k = PropsSI("CONDUCTIVITY", "T", T, "P", P, fluid)
@@ -51,15 +55,13 @@ def calc_h_and_Re(T, fluid, m_dot, D):
     h = Nu * k / D
     return h, Re
 
-h_desuper, Re_desuper = calc_h_and_Re(T_super, fluid, m_dot, D_o)
-h_subcool, Re_subcool = calc_h_and_Re(T_sub, fluid, m_dot, D_o)
+h_desuper, Re_desuper = calc_h_and_Re(T_super, P_sat, fluid, m_dot, D_o)
+h_subcool, Re_subcool = calc_h_and_Re(T_sub, P_sat, fluid, m_dot, D_o)
 
 # Condensation zone (Shah correlation)
-T = T_cond
-P = PropsSI('P', 'T', T, 'Q', 0, fluid)
-mu_l = PropsSI("VISCOSITY", "T", T, "Q", 0, fluid)
-cp_l = PropsSI("C", "T", T, "Q", 0, fluid)
-k_l = PropsSI("CONDUCTIVITY", "T", T, "Q", 0, fluid)
+mu_l = PropsSI("VISCOSITY", "T", T_cond, "Q", 0, fluid)
+cp_l = PropsSI("C", "T", T_cond, "Q", 0, fluid)
+k_l = PropsSI("CONDUCTIVITY", "T", T_cond, "Q", 0, fluid)
 Re_cond = (4 * m_dot) / (math.pi * D_o * mu_l)
 Pr_cond = cp_l * mu_l / k_l
 Nu_lo = 0.023 * Re_cond**0.8 * Pr_cond**0.4
