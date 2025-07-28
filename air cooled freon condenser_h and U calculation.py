@@ -54,7 +54,7 @@ def main():
     flow_area = finned_area * 0.25  # Assume 25% free area
 
     velocity = calculate_velocity(air_flow_m3h, flow_area)
-    Re = calculate_reynolds_number(AIR_DENSITY, velocity, d_outer, Air_MU)
+    Re = calculate_reynolds_number(AIR_DENSITY, velocity, d_outer, AIR_MU)
     Nu = calculate_nusselt_number(Re, AIR_PR)
     U = calculate_u(Nu, AIR_K, d_outer)
 
