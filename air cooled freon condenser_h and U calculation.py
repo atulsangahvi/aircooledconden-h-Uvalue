@@ -13,7 +13,7 @@ AIR_MU = PropsSI('V', 'T', T, 'P', P, 'Air')
 AIR_K = PropsSI('L', 'T', T, 'P', P, 'Air')  # W/m-K, thermal conductivity of air
 
 # Prandtl number
-def calculate_AIR_PR(AIR_CP, AIR_MU, AIR_K)
+def calculate_AIR_PR(AIR_CP, AIR_MU, AIR_K):
     return (AIR_CP*AIR_MU)/AIR_K  
 AIR_PR = calculate_AIR_PR(AIR_CP, AIR_MU, AIR_K)
 
