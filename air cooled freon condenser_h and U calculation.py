@@ -9,7 +9,7 @@ P = 101325       # Atmospheric pressure in Pa
 # Get air density
 AIR_DENSITY = PropsSI('D', 'T', T, 'P', P, 'Air')# kg/m3
 AIR_CP = PropsSI('C', 'T', T, 'P', P, 'Air')  # J/kg-K, specific heat of air
-
+AIR_MU = PropsSI('V', 'T', T, 'P', P, 'Air') 
 AIR_K = 0.0262  # W/m-K, thermal conductivity of air
 AIR_PR = AIR_K = PropsSI('L', 'T', T, 'P', P, 'Air')  # Prandtl number
 
@@ -54,7 +54,7 @@ def main():
     flow_area = finned_area * 0.25  # Assume 25% free area
 
     velocity = calculate_velocity(air_flow_m3h, flow_area)
-    Re = calculate_reynolds_number(AIR_DENSITY, velocity, d_outer, 1.8e-5)
+    Re = calculate_reynolds_number(AIR_DENSITY, velocity, d_outer, Air_MU)
     Nu = calculate_nusselt_number(Re, AIR_PR)
     U = calculate_u(Nu, AIR_K, d_outer)
 
@@ -66,6 +66,7 @@ def main():
     st.write(f"Air density at 50°C and 1 atm = {AIR_DENSITY:.3f} kg/m³")
     st.write(f"Specific heat of air at 50°C and 1 atm = {AIR_CP:.2f} J/kg·K")
     st.write(f"Thermal conductivity of air at 50°C and 1 atm = {AIR_K:.6f} W/m·K")
+    st.write(f"Viscosity of air at 50°C and 1 atm = {AIR_MU:.8f} Pa·s")
     st.write(f"Air Velocity: {velocity:.2f} m/s")
     st.write(f"Reynolds Number: {Re:.0f}")
     st.write(f"Nusselt Number: {Nu:.1f}")
