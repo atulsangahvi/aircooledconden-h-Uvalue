@@ -7,7 +7,7 @@ T = 50 + 273.15  # Convert °C to Kelvin
 P = 101325       # Atmospheric pressure in Pa
 
 # Get air density
-Air_density = PropsSI('D', 'T', T, 'P', P, 'Air')# kg/m3
+AIR_DENSITY = PropsSI('D', 'T', T, 'P', P, 'Air')# kg/m3
 AIR_CP = 1006  # J/kg-K, specific heat of air
 
 AIR_K = 0.0262  # W/m-K, thermal conductivity of air
