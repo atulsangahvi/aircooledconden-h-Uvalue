@@ -3,8 +3,8 @@ import streamlit as st
 import math
 from CoolProp.CoolProp import PropsSI
 # Physical property constants (can be replaced with CoolProp for more accuracy)
-T = st.sidebar.number_input("Ambient air temp (deg C)", value=50.00, step=0.5)
-T=T+273.15 # Convert °C to Kelvin
+T1 = st.sidebar.number_input("Ambient air temp (deg C)", value=50.00, step=0.5)
+T=T1+273.15 # Convert °C to Kelvin
 P = 101325       # Atmospheric pressure in Pa
 
 # Get air density
@@ -68,7 +68,7 @@ def main():
     A_required = Q_air / (U * delta_T_lm)
 
     st.subheader("Results")
-    st.write(f"Air density at 50°C and 1 atm = {AIR_DENSITY:.3f} kg/m³")
+    st.write(f"Air density at = {T1:2f} and 1 atm = {AIR_DENSITY:.3f} kg/m³")
     st.write(f"Specific heat of air at 50°C and 1 atm = {AIR_CP:.2f} J/kg·K")
     st.write(f"Thermal conductivity of air at 50°C and 1 atm = {AIR_K:.6f} W/m·K")
     st.write(f"Viscosity of air at 50°C and 1 atm = {AIR_MU:.8f} Pa·s")
