@@ -34,7 +34,7 @@ def calculate_u(nu, k, d_h):
     return nu * k / d_h
 
 def main():
-    st.title("Condenser Heat Transfer Calculator")
+    st.title("Air cooled Condenser Pr#, Re#, Nu#, h,& U  Calculator")
 
     st.sidebar.header("Geometry Inputs")
     d_outer_mm = st.sidebar.number_input("Tube Outer Diameter (mm)", value=9.52)
