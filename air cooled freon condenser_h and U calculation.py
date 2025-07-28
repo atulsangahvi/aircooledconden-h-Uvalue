@@ -3,7 +3,8 @@ import streamlit as st
 import math
 from CoolProp.CoolProp import PropsSI
 # Physical property constants (can be replaced with CoolProp for more accuracy)
-T = 50 + 273.15  # Convert °C to Kelvin
+T1 = st.sidebar.number_input("Ambient air temp (deg C)", value=50, step=0.5)
+T=T1+273.15 # Convert °C to Kelvin
 P = 101325       # Atmospheric pressure in Pa
 
 # Get air density
