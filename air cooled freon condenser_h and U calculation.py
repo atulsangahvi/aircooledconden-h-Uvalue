@@ -11,7 +11,7 @@ AIR_DENSITY = PropsSI('D', 'T', T, 'P', P, 'Air')# kg/m3
 AIR_CP = PropsSI('C', 'T', T, 'P', P, 'Air')  # J/kg-K, specific heat of air
 
 AIR_K = 0.0262  # W/m-K, thermal conductivity of air
-AIR_PR = 0.71  # Prandtl number
+AIR_PR = AIR_K = PropsSI('L', 'T', T, 'P', P, 'Air')  # Prandtl number
 
 def calculate_velocity(volume_flow_m3h, area_m2):
     return (volume_flow_m3h / 3600) / area_m2
@@ -65,6 +65,7 @@ def main():
     st.subheader("Results")
     st.write(f"Air density at 50°C and 1 atm = {AIR_DENSITY:.3f} kg/m³")
     st.write(f"Specific heat of air at 50°C and 1 atm = {AIR_CP:.2f} J/kg·K")
+    st.write(f"Thermal conductivity of air at 50°C and 1 atm = {AIR_K:.6f} W/m·K")
     st.write(f"Air Velocity: {velocity:.2f} m/s")
     st.write(f"Reynolds Number: {Re:.0f}")
     st.write(f"Nusselt Number: {Nu:.1f}")
