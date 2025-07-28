@@ -72,7 +72,7 @@ def main():
     st.write(f"Thermal conductivity of air at 50°C and 1 atm = {AIR_K:.6f} W/m·K")
     st.write(f"Viscosity of air at 50°C and 1 atm = {AIR_MU:.8f} Pa·s")
     st.write(f"Air Velocity: {velocity:.2f} m/s")
-    st.write(f"AIR Prandtl Number: {AIR_PR:.2f}
+    st.write(f"AIR Prandtl Number: {AIR_PR:.2f}")
     st.write(f"Reynolds Number: {Re:.0f}")
     st.write(f"Nusselt Number: {Nu:.1f}")
     st.write(f"Overall Heat Transfer Coefficient U: {U:.2f} W/m²·K")
