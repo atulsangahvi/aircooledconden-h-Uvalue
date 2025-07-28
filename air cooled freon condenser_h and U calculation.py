@@ -10,8 +10,12 @@ P = 101325       # Atmospheric pressure in Pa
 AIR_DENSITY = PropsSI('D', 'T', T, 'P', P, 'Air')# kg/m3
 AIR_CP = PropsSI('C', 'T', T, 'P', P, 'Air')  # J/kg-K, specific heat of air
 AIR_MU = PropsSI('V', 'T', T, 'P', P, 'Air') 
-AIR_K = 0.0262  # W/m-K, thermal conductivity of air
-AIR_PR = AIR_K = PropsSI('L', 'T', T, 'P', P, 'Air')  # Prandtl number
+AIR_K = PropsSI('L', 'T', T, 'P', P, 'Air')  # W/m-K, thermal conductivity of air
+
+# Prandtl number
+def calculate_AIR_PR(AIR_CP, AIR_MU, AIR_K)
+    return (AIR_CP*AIR_MU)/AIR_K  
+AIR_PR = calculate_AIR_PR(AIR_CP, AIR_MU, AIR_K)
 
 def calculate_velocity(volume_flow_m3h, area_m2):
     return (volume_flow_m3h / 3600) / area_m2
@@ -52,7 +56,7 @@ def main():
     fins_per_m = fin_spacing_fpi * 39.37
     finned_area = coil_length * coil_height
     flow_area = finned_area * 0.25  # Assume 25% free area
-
+    
     velocity = calculate_velocity(air_flow_m3h, flow_area)
     Re = calculate_reynolds_number(AIR_DENSITY, velocity, d_outer, AIR_MU)
     Nu = calculate_nusselt_number(Re, AIR_PR)
