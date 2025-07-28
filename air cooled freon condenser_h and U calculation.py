@@ -1,7 +1,7 @@
 
 import streamlit as st
 import math
-from coolprop.coolprop import PropsSI
+from CoolProp.CoolProp import PropsSI
 # Physical property constants (can be replaced with CoolProp for more accuracy)
 AIR_CP = 1006  # J/kg-K, specific heat of air
 AIR_DENSITY = propsSI("D",T, 323.15, "P", 101325, "air")  # kg/m3
