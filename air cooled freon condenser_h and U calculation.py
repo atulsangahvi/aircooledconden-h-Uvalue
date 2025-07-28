@@ -46,7 +46,7 @@ def main():
 
     st.sidebar.header("Air Side Inputs")
     air_flow_m3h = st.sidebar.number_input("Air Flow Rate (m³/h)", value=2500.0)
-    air_temp_in = st.sidebar.number_input("Air Inlet Temperature (°C)", value=35.0)
+    air_temp_in = T
     air_temp_out = st.sidebar.number_input("Air Outlet Temperature (°C)", value=45.0)
 
     d_outer = d_outer_mm / 1000  # m
