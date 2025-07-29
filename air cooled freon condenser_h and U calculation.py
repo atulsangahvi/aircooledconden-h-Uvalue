@@ -42,7 +42,7 @@ def main():
     coil_length_mm = st.sidebar.number_input("Coil Length (mm)", value=1000.0, step = 25.0)
     fin_spacing_fpi = st.sidebar.number_input("Fin Density (FPI)", value=14, step=1)
     n_rows = st.sidebar.number_input("Number of Tube Rows", value=3)
-    coil_thickness_mm = st.sidebar.number_input("Coil Thickness (mm)", value=76.2)
+    coil_thickness_mm = st.sidebar.number_input("Coil Thickness (mm)", value=76.2, step = 10.0)
 
     st.sidebar.header("Air Side Inputs")
     air_flow_m3h = st.sidebar.number_input("Air Flow Rate (m³/h)", value=2500.0)
