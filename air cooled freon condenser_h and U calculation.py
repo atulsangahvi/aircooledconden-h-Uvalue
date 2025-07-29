@@ -10,7 +10,7 @@ P = 101325       # Atmospheric pressure in Pa
 # Get air density
 AIR_DENSITY = PropsSI('D', 'T', T, 'P', P, 'Air')# kg/m3
 AIR_CP = PropsSI('C', 'T', T, 'P', P, 'Air')  # J/kg-K, specific heat of air
-AIR_MU = PropsSI('V', 'T', T, 'P', P, 'Air') 
+AIR_MU = PropsSI('V', 'T', T, 'P', P, 'Air') # viscosity
 AIR_K = PropsSI('L', 'T', T, 'P', P, 'Air')  # W/m-K, thermal conductivity of air
 
 # Prandtl number
