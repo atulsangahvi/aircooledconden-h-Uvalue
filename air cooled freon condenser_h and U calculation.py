@@ -45,7 +45,7 @@ def main():
     coil_thickness_mm = st.sidebar.number_input("Coil Thickness (mm)", value=76.0, step = 10.0)
 
     st.sidebar.header("Air Side Inputs")
-    air_flow_m3h = st.sidebar.number_input("Air Flow Rate (m³/h)", value=2500.0)
+    air_flow_m3h = st.sidebar.number_input("Air Flow Rate (m³/h)", value=2500.0, step=50.0)
     air_temp_in = T
     air_temp_out = st.sidebar.number_input("Air Outlet Temperature (°C)", value=45.0)
 
