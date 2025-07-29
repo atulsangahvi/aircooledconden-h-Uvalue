@@ -38,8 +38,8 @@ def main():
 
     st.sidebar.header("Geometry Inputs")
     d_outer_mm = st.sidebar.number_input("Tube Outer Diameter (mm)", value=9.52)
-    coil_height_mm = st.sidebar.number_input("Coil Height (mm)", value=600.0)
-    coil_length_mm = st.sidebar.number_input("Coil Length (mm)", value=1000.0)
+    coil_height_mm = st.sidebar.number_input("Coil Height (mm)", value=600.0, step = 25.0 )
+    coil_length_mm = st.sidebar.number_input("Coil Length (mm)", value=1000.0, step = 25.0)
     fin_spacing_fpi = st.sidebar.number_input("Fin Density (FPI)", value=14, step=1)
     n_rows = st.sidebar.number_input("Number of Tube Rows", value=3)
     coil_thickness_mm = st.sidebar.number_input("Coil Thickness (mm)", value=76.2)
